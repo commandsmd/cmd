@@ -1,0 +1,35 @@
+load("@io_bazel_rules_terraform//terraform:def.bzl", "terraform_module")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+load("//tools/rules_terraform_aws/lambda:index.bzl", "lambda_terraform_module")
+
+go_binary(
+    name = "main",
+    out = "main",
+    embed = [":lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "lib",
+    srcs = ["main.go"],
+    importpath = "github.com/metered/source/tesserai/tools/guides/guide2test",
+    visibility = ["//visibility:private"],
+    deps = [
+        "@cc_mvdan_sh_v3//syntax",
+        "@com_github_charmbracelet_glamour//:glamour",
+        "@com_github_google_subcommands//:subcommands",
+        "@com_github_hashicorp_go_getter//:go-getter",
+        "@com_github_yuin_goldmark//:goldmark",
+        "@com_github_yuin_goldmark//ast",
+        "@com_github_yuin_goldmark//extension",
+        "@com_github_yuin_goldmark//text",
+    ],
+)
+
+go_test(
+    name = "test",
+    deps = [
+        "@tools_gotest_v3//assert",
+        "@tools_gotest_v3//assert/cmp",
+    ],
+)

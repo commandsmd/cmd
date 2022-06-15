@@ -1,0 +1,52 @@
+# commands.md/cmd intro
+
+# cmd is a simple tool for running code snippets in markdown files.
+#
+# It's a great way to organize and discover important project-wide commands.
+
+# Let's look at a simple example.
+#
+cat > README.md <<'EOF'
+#### `hi`
+This is a useful command. It says hello!
+
+``` bash
+echo 'hello, world'
+```
+EOF
+
+#
+# Now let's run our command with cmd
+cmd ./README.md hi
+#
+# We can see the help text for our command too
+cmd ./README.md help hi
+
+#
+# Let's add a few more commands
+cat /demos/intro/more-commands.md >> README.md
+
+#
+cmd ./README.md help
+
+# There's support for javascript
+cmd ./README.md jsgreeting --help
+cmd ./README.md jsgreeting
+
+#
+# And python too
+cmd ./README.md pygreeting --help
+cmd ./README.md pygreeting
+
+#
+# We can also check the syntax of all our commands without actually running them.
+cmd ./README.md check
+
+#
+# cmd can do lots more. It supports required environment variables and
+# automatically discovers command line options.
+#
+# Learn more about how cmd can help you be more productive and organized:
+# https://github.com/commandsmd/cmd
+#
+# Happy hacking!
