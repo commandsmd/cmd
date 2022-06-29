@@ -1,0 +1,8 @@
+builds:
+  - main: ./cmd
+    id: "cmd"
+    binary: cmd
+    goos:
+      - linux
+      - darwin
+      - windows
